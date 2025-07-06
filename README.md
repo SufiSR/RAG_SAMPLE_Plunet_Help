@@ -25,18 +25,24 @@ The backend retrieves and chunks Confluence pages, stores them in a **Chroma vec
 
 ```plaintext
 .
-├── app.py                 # Main Streamlit entry point (navigation)
-├── pages/
-│   ├── chatbot_ui.py      # Chat UI page
-│   └── update_vector_page.py  # Vector store update modal
-├── update_confluence.py   # Confluence retrieval and chunking
-├── qa_runner.py           # Retrieval, ancestor enrichment, QA pipeline
-├── answer_generation.py   # LLM answer generation with confidence logic
-├── .env                   # Environment variables
-├── assets/
-│   └── logo.png           # Bot avatar image
-├── requirements.txt
-└── README.md              # Project description
+├── assets/                     # Static assets
+│   └── logo.png                # Bot avatar image
+├── common/                     # Shared utilities and configurations
+│   └── vectorstore_utils.py    # Settings and functions for Chroma
+├── embedding_pipeline/         # Scripts for embedding and vector store creation
+│   ├── chunking_utils.py       # Chunking and Enrichment
+│   ├── confluence_utils.py     # Confluence data loading logic
+│   └── update_confluence.py    # Confluence retrieval and chunking
+├── pages/                      # Streamlit pages for the web app
+│   ├── chatbot_ui.py           # Chatbot UI page
+│   └── update_vector_page.py   # Vector store admin page
+├── retrieval_pipeline/         # Retrieval and QA logic
+│   ├── qa_runner.py            # Retrieval, ancestor enrichment, QA pipeline
+│   ├── answer_generation.py    # LLM answer generation logic
+│   └── retrieval_utils.py      # Chunk Retrieva logic
+├── app.py                      # Main Streamlit application entry point
+├── requirements.txt            # Python dependencies
+└── README.md                   # Project documentation
 ```
 
 ---
@@ -54,11 +60,11 @@ pip install -r requirements.txt
 ### 2️⃣ Configure environment
 
 Create a `.env` file in your root folder:
-
+Since the online help is publicly available no username or API token are necessary to access the knowledgebase
 ```bash
-CONFLUENCE_URL=https://your-domain.atlassian.net
-CONFLUENCE_EMAIL=your-email@example.com
-CONFLUENCE_API_TOKEN=your-confluence-api-token
+CONFLUENCE_URL=https://plunethelp.atlassian.net/wiki
+CONFLUENCE_USERNAME=
+CONFLUENCE_API_TOKEN=
 SPACE_KEY=KB
 OPENAI_API_KEY=your-openai-key
 UPDATE_PASSWORD=your-secure-admin-password
