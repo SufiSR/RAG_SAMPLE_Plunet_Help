@@ -1,5 +1,3 @@
-# 📄 **README.md**
-
 ## 💬 Plunet Knowledge Chat (RAG Sample)
 
 This project is a full **Retrieval-Augmented Generation (RAG) app** for querying a Confluence knowledge base (in this case Plunet Online Help) using a chatbot-style UI built with **Streamlit**.
